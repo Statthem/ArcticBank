@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url"> jdbc:mysql://localhost:3306/arcticbankdb </property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<!-- Display and format all executed SQL to stdout -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- JDBC connection pool, use Hibernate internal connection pool -->
+		<property name="connection.pool_size">10</property>
+
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!-- validate the database schema on startup -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- Mapping with model class containing annotations -->
+		<mapping class="webapp.arcticbank.model.User" />
+		<mapping class="webapp.arcticbank.model.CreditCard" />
+		
+	</session-factory>
+</hibernate-configuration>
