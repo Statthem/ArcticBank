@@ -95,7 +95,7 @@ public class CreditCardRegistrationServlet extends HttpServlet {
 				+ String.valueOf(number14);
 
 		long cardId = Long.parseLong(id);
-		System.out.println(cardId);
+		
 		return cardId;
 	}
 
