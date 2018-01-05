@@ -9,11 +9,13 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.apache.tomcat.util.descriptor.web.ServletDef;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -24,6 +26,7 @@ import webapp.arcticbank.model.User;
 
 @WebServlet("/CreditCardRegistrationServlet")
 public class CreditCardRegistrationServlet extends HttpServlet {
+	Logger logger = Logger.getLogger(CreditCardRegistrationServlet.class);
 	ServletContext context;
 	UserDAO userDAO = new UserDAO();
 	SessionFactory sessionFactory;
@@ -31,7 +34,7 @@ public class CreditCardRegistrationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		context = req.getServletContext();
-
+        
 		long card_id = 0;
 		String pin_code = null;
 		int pin = 0;
@@ -50,11 +53,14 @@ public class CreditCardRegistrationServlet extends HttpServlet {
 		creditCard.setCard_id(card_id);
 		creditCard.setPin_code(pin);
 		try {
-			userDAO.addCreditCard(sessionFactory, user, creditCard);
+			userDAO.addCreditCard(user, creditCard);
+			logger.info("credit card registration succesfull");
 		} catch (HibernateException e) {
-			context.log(e.getMessage());
+			logger.info("exception was ocured while credit card registration:",e);
+			e.printStackTrace(System.out);
 		}
-		req.getRequestDispatcher("/WelcomePage.jsp").forward(req, resp);
+		
+		req.getRequestDispatcher("CreditCardSuccesfullRegistration.jsp").forward(req, resp);
 
 	}
 

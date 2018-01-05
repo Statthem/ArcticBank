@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.apache.tomcat.util.descriptor.web.ServletDef;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -22,6 +23,7 @@ import webapp.arcticbank.model.User;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
+	Logger logger = Logger.getLogger(RegistrationServlet.class);
 	ServletContext context;
 	UserDAO userDAO = new UserDAO();
 	SessionFactory sessionFactory;
@@ -51,7 +53,6 @@ public class RegistrationServlet extends HttpServlet {
 			post_index = req.getParameter("post_index");
 
 			date = req.getParameter("date_of_birthday");
-			System.out.println(date);
 			date_of_birthday = Date.valueOf(date);
 
 			country = req.getParameter("country");
@@ -60,7 +61,7 @@ public class RegistrationServlet extends HttpServlet {
 			exc.printStackTrace(System.out);
 		}
 
-		if (!userDAO.checkIfUserExists(sessionFactory, first_name, second_name)) {
+		if (!userDAO.checkIfUserExists(first_name, second_name)) {
 			User user = new User();
 			user.setFirst_name(first_name);
 			user.setSecond_name(second_name);
@@ -71,12 +72,12 @@ public class RegistrationServlet extends HttpServlet {
 			user.setCountry(country);
 			try {
 				userDAO.createNewUser(sessionFactory, user);
-				context.log("New user registered succesfully");
+				logger.info("New user registered succesfully");
 			} catch (HibernateException e) {
-				context.log(e.getMessage());
+				logger.info("exception while user registration ",e);
 			}
 			
-			
+			req.getRequestDispatcher("SuccesfullRegistrationPage.html").forward(req, resp);
 
 		} else {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/RegistrationPage.html");

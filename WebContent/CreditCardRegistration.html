@@ -10,18 +10,52 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="BootStrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="BootStrap/fonts/font-awesome/css/font-awesome.css">
+<title>Credit card registration page</title>
+<style type="text/css">
+
+#right-half{
+    background-image: url("img/image.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+}
+</style>
 </head>
 <body>
-	<div class="row">
-		<div class="col-md-12">
-			<form action="CreditCardRegistrationServlet" method="post">
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<form action="CreditCardRegistrationServlet" method="post">
+					<div class="form-group">
+						<label for="pin code">pin code* (4 numbers) </label> <input
+							type="text" class="form-control" name="pin_code"
+							required="required">
+					</div>
 
-				pin code (4 numbers)<input type="password" name="pin_code"
-					required="required" maxlength="4"><br> <input
-					type="submit" value="Accept">
-			</form>
+					<button type="submit" class="btn btn-default">Register</button>
+
+				</form>
+			</div>
+			<div class="col-md-6">
+			<p>
+			With credit card you will be able to use all our features, such ass: </p>
+			<p>money transfer;</p>
+			<p>deposits;</p>
+			<p>credits;</p>
+			</div>
+			<div class="col-md-4" id = "right-half">
+			</div>
+			</div>
+			<div class = "row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					  <img src="img/credit-card.jpg" class="img-rounded" > 
+				</div>
+			</div>
 		</div>
-	</div>
-	
+		</div>
 </body>
+
 </html>

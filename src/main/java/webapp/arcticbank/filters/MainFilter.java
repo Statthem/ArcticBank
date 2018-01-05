@@ -32,19 +32,47 @@ public class MainFilter implements Filter {
 
 		HttpSession session = req.getSession(false);
 
-		if(session == null & (uri.contains("Succesfull"))){
-			context.log("Unauthorized access request");
-			res.sendRedirect("WelcomePage.jsp");
-		}else{
-			// pass the request along the filter chain
+		if(session != null){
+			if(session.getAttribute("current_user") == null && uri.contains("Cabinet")){
+				res.sendRedirect("WelcomePage.jsp");
+				return;
+			}
+				if(session.getAttribute("current_user") == null && uri.contains("Card")){
+					res.sendRedirect("WelcomePage.jsp");
+					return;
+				}
+
+					// pass the request along the filter chain
+					chain.doFilter(request, response);
+					return;
+				}
+		if(session == null){
+			if(uri.contains("Cabinet")){
+				res.sendRedirect("WelcomePage.jsp");
+			return;
+			}
+			if(uri.contains("Card")){
+				res.sendRedirect("WelcomePage.jsp");
+			return;
+			}
+			if(uri.contains("Transfer")){
+				res.sendRedirect("WelcomePage.jsp");
+			return;
+			}
+		
+		else{
 			chain.doFilter(request, response);
+		}
+		
 		}
 
 
-	}
-
-	public void destroy() {
+			}
+			
 		
-	}
 
-}
+		public void destroy() {
+
+		}
+
+	}

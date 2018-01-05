@@ -1,5 +1,6 @@
 package webapp.arcticbank.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
@@ -17,12 +18,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="users") 
-public class User {
+public class User implements Serializable{
 	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id", nullable=false, unique=true)
+	@Column(name="user_id", nullable=false, unique=true)
 	private int id;
 	
 	@Column(name="first_name", length=30, nullable=false)
@@ -40,15 +41,13 @@ public class User {
 	@Column(name="post_index", nullable=false)
 	private String post_index;
 	
-	@Column(name="date_of_birthday", nullable=false)
+	@Column(name="date_of_birthday")
 	private Date date_of_birthday;
 	
-	@Column(name="country", nullable=true)
+	@Column(name="country")
 	private String country;
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	 @JoinTable(name = "user_cards", joinColumns = {@JoinColumn(name = "user_id")}, 
-     inverseJoinColumns = {@JoinColumn(name = "card_id")})
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user",cascade = CascadeType.ALL)
 	private Set<CreditCard> credit_cards;	
 
 	public int getId() {

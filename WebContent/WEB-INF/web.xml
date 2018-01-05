@@ -5,12 +5,19 @@
     <welcome-file>WelcomePage.jsp</welcome-file>
   </welcome-file-list>
   
+  <context-param>
+    <param-name>log4j-config</param-name>
+    <param-value>resources/log4j.xml</param-value>
+  </context-param>
+ 
   <filter>
     <filter-name>MainFilter</filter-name>
     <filter-class>webapp.arcticbank.filters.MainFilter</filter-class>
   </filter>
+  
   <filter-mapping>
     <filter-name>MainFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
 </web-app>
