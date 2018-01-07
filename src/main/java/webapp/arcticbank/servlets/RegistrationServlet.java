@@ -23,6 +23,12 @@ import webapp.arcticbank.model.User;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5585030335097371165L;
+	
 	Logger logger = Logger.getLogger(RegistrationServlet.class);
 	ServletContext context;
 	UserDAO userDAO = new UserDAO();
@@ -58,7 +64,7 @@ public class RegistrationServlet extends HttpServlet {
 			country = req.getParameter("country");
 
 		} catch (NullPointerException | IllegalArgumentException exc) {
-			exc.printStackTrace(System.out);
+			logger.info(exc.getMessage(),exc);
 		}
 
 		if (!userDAO.checkIfUserExists(first_name, second_name)) {
@@ -73,8 +79,8 @@ public class RegistrationServlet extends HttpServlet {
 			try {
 				userDAO.createNewUser(sessionFactory, user);
 				logger.info("New user registered succesfully");
-			} catch (HibernateException e) {
-				logger.info("exception while user registration ",e);
+			} catch (HibernateException exc) {
+				logger.info("exception while user registration ",exc);
 			}
 			
 			req.getRequestDispatcher("SuccesfullRegistrationPage.html").forward(req, resp);

@@ -14,10 +14,7 @@ public class SessionManager {
 	public static boolean buildSessionFactory() {
 		if (sessionFactory == null) {
 			// Build a SessionFactory object from session-factory config
-			// defined in the hibernate.cfg.xml file. In this file we
-			// register the JDBC connection information, connection pool,
-			// the hibernate dialect that we used and the mapping to our
-			// hbm.xml file for each pojo (plain old java object).
+			// defined in the hibernate.cfg.xml file
 			try {
 				Configuration config = new Configuration();
 				sessionFactory = config.configure().buildSessionFactory();

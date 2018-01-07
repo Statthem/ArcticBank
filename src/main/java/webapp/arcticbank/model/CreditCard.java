@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "credit_cards")
 public class CreditCard implements Serializable{
+	public CreditCard(){}
 	
 	@Id
 	@Column(name="card_id", nullable=false, unique=true)

@@ -2,6 +2,7 @@ package webapp.arcticbank.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users") 
 public class User implements Serializable{
+	public User(){}
 	
 	
 	@Id
@@ -48,7 +50,10 @@ public class User implements Serializable{
 	private String country;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user",cascade = CascadeType.ALL)
-	private Set<CreditCard> credit_cards;	
+	private Set<CreditCard> credit_cards;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user",cascade = CascadeType.ALL)
+	private List<Deposit> deposits;	
 
 	public int getId() {
 		return id;
@@ -121,6 +126,16 @@ public class User implements Serializable{
 	public void setCredit_cards(Set<CreditCard> credit_cards) {
 		this.credit_cards = credit_cards;
 	}
+
+	public List<Deposit> getDeposits() {
+		return deposits;
+	}
+
+	public void setDeposits(List<Deposit> deposits) {
+		this.deposits = deposits;
+	}
+
+	
 
 	
 	

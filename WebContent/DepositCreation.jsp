@@ -40,14 +40,17 @@ User user = (User) request.getSession().getAttribute("current_user");
 <div class="container">
 		<div class="row">
 			<div class="col-md-3">
-		<h1>	Choose card  </h1>
+		<h1>	New deposit  </h1>
+		<br>
+		<br>
+		<br>
 	</div>
 	</div>
 	<%if (user.getCredit_cards() != null){ %>
 	<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-6">
 			<h4>Credit cards:</h4>
-			 <form action="CashTransferServlet" method="post">
+			 <form action="DepositCreationServlet" method="post">
 			  <select name="Scard_id" id="card_id">
      <%
      Iterator<CreditCard> iterator = user.getCredit_cards().iterator();
@@ -61,25 +64,34 @@ User user = (User) request.getSession().getAttribute("current_user");
      
       </select> 
       <div class="form-group">
-							<label for="id">Destination card id</label> <input type="number"
-								class="form-control" name="Dcard_id">
+							your deposit will be active for 
+							<select name="active_date">
+							 <option value="2 months"> 2 months </option>
+							  <option value="6 months"> 6 months </option>
+							   <option value="1 year"> 1 year </option>
+							    <option value="1,5 year"> 1,5 year </option>
+							     <option value="3 years"> 3 years</option>
+							</select>
+							
 						</div>
 	 <div class="form-group">
-							<label for="summ">Transfer sum (USD)</label> <input type="number"
-								class="form-control" type=number step=0.01 min=0 name="summ">
+							<label for="summ">deposit balance (USD, minimum - 100)</label> <input type="number"
+								class="form-control" type=number step=0.01 min=100 name="summ">
 						</div>					
 						
-      <button type="submit" class="btn btn-primary">transfer</button>
+      <button type="submit" class="btn btn-primary">confirm</button>
     	 </form>
   
 	</div>
 	<div class="col-md-5 col-md-offset-1">
-	<h4> Money transfer between ArcticBank credit card completely for free</h4>
-	
+	<h4> Conditions:</h4>
+	<p>gain 4% from starting balance every month;</p>
+	<p>you can't use money on deposit until it's expires</p>
 	</div>
 	</div>
 	
 	</div>
+	
 	<br>
 	<br>
 	<br>
@@ -88,6 +100,8 @@ User user = (User) request.getSession().getAttribute("current_user");
 	<div id="wrapper">
      <div id="bottomDweller"><p></p></div>
 </div>
+	
+	
 	
 	
 </body>

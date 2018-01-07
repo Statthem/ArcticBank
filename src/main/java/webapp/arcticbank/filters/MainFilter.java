@@ -19,7 +19,7 @@ public class MainFilter implements Filter {
 	ServletContext context;
 
 	public void init(FilterConfig fConfig) throws ServletException {
-
+       
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -42,7 +42,7 @@ public class MainFilter implements Filter {
 					return;
 				}
 
-					// pass the request along the filter chain
+					
 					chain.doFilter(request, response);
 					return;
 				}
@@ -59,8 +59,13 @@ public class MainFilter implements Filter {
 				res.sendRedirect("WelcomePage.jsp");
 			return;
 			}
+			if(uri.contains("Deposit")){
+				res.sendRedirect("WelcomePage.jsp");
+			return;
+			}
 		
 		else{
+			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		}
 		

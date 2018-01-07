@@ -4,29 +4,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Helios</title>
+<title>Arctic</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
-<!-- Favicons
-    ================================================== -->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="img/apple-touch-icon-114x114.png">
-
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="BootStrap/css/bootstrap.css">
+	href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="BootStrap/fonts/font-awesome/css/font-awesome.css">
+	href="fonts/font-awesome/css/font-awesome.css">
 
 <!-- Stylesheet
     ================================================== -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300'
 	rel='stylesheet' type='text/css'>
 <link
@@ -134,6 +124,11 @@
 					</form>
 
 				</div>
+				<div class="col-md-5 col-md-offset-1">
+	<p>Only authorized users can gain access<p>
+	<p>to all services we providing them </p>
+	
+	</div>
 			</div>
 		</div>
 	</div>
@@ -147,7 +142,7 @@
 				<h2>Our Services</h2>
 				<hr>
 				<div class="clearfix"></div>
-				<p>All sorts of stuff</p>
+				<p>We provide a lot of services)</p>
 			</div>
 			<div class="space"></div>
 			<div class="row">
@@ -187,21 +182,26 @@
 				<div class="col-md-3 col-sm-6 service">
 					<i class="fa fa-rocket"></i>
 					<h4>Deposit</h4>
-					<p>///under development</p>
+					<p><%
+							if (request.getSession().getAttribute("current_user") != null) {
+						%>
+						<a href="DepositCreation.jsp">Create new deposit</a>
+						<%
+							} else {
+						%>
+						Registered users only.
+						<%
+							}
+						%></p>
 				</div>
 				<div class="col-md-3 col-sm-6 service">
 					<i class="fa fa-line-chart"></i>
 					<h4>Currencies</h4>
-					<p>///under development</p>
+					<p><a href="https://www.dailyfx.com/forex-rates">Watch live currencies</a>
+						</p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-3 col-sm-6 service">
-				<i class="fa fa-line-chart"></i>
-				<h4>Payment services</h4>
-				<a href="paymentServices.html">check out</a>
-				</div>
-				</div>
+			
 		</div>
 	</div>
 	<!-- About Section -->
@@ -215,7 +215,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<img src="img/about.jpg" class="img-responsive">
+					<img src="img/about2.jpg" class="img-responsive">
 				</div>
 				<div class="col-md-6">
 					<div class="about-text">
@@ -232,19 +232,19 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
 					<div class="achievement-box">
-						<span class="count">1999999</span>
+						<span class="count">199</span>
 						<h4>Clients in total</h4>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="achievement-box">
-						<span class="count">42422</span>
+						<span class="count">100</span>
 						<h4>Working hours</h4>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="achievement-box">
-						<span class="count">6021452626611</span>
+						<span class="count">602145</span>
 						<h4>Money transfered</h4>
 					</div>
 				</div>
@@ -263,8 +263,8 @@
 			<div class="section-title center">
 				<h2>Contact Us</h2>
 				<hr>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-					sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
+				<p>You can contact find us in our place</p>
+				<p></p>
 			</div>
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-4">
@@ -284,34 +284,7 @@
 				<hr>
 				<div class="clearfix"></div>
 			</div>
-			<div class="col-md-8 col-md-offset-2">
-				<h3>Leave us a message</h3>
-				<form name="sentMessage" id="contactForm" novalidate>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="text" id="name" class="form-control"
-									placeholder="Name" required="required">
-								<p class="help-block text-danger"></p>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="email" id="email" class="form-control"
-									placeholder="Email" required="required">
-								<p class="help-block text-danger"></p>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<textarea name="message" id="message" class="form-control"
-							rows="4" placeholder="Message" required></textarea>
-						<p class="help-block text-danger"></p>
-					</div>
-					<div id="success"></div>
-					<button type="submit" class="btn btn-default">Send Message</button>
-				</form>
-			</div>
+			
 		</div>
 	</div>
 	</div>

@@ -21,6 +21,12 @@ import webapp.arcticbank.model.User;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1825504014772176442L;
+
 	UserDAO userDao = new UserDAO();
     
 	static Logger logger = Logger.getLogger(LoginServlet.class);

@@ -27,6 +27,7 @@
 		<!-- Mapping with model class containing annotations -->
 		<mapping class="webapp.arcticbank.model.User" />
 		<mapping class="webapp.arcticbank.model.CreditCard" />
+		<mapping class="webapp.arcticbank.model.Deposit" />
 		
 	</session-factory>
 </hibernate-configuration>

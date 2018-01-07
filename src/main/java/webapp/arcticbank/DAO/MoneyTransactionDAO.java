@@ -19,7 +19,7 @@ public class MoneyTransactionDAO {
 	
 	Session session = SessionManager.getSession();
 	
-	public void moneyTransaction(SessionFactory sessionFactory,CreditCard sourceCard,CreditCard destCard,BigDecimal summ){
+	public void moneyTransaction(CreditCard sourceCard,CreditCard destCard,BigDecimal summ){
 		Transaction transaction = null;
 		
 		try{

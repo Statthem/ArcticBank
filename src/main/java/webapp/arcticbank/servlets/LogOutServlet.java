@@ -18,7 +18,13 @@ import org.apache.log4j.Logger;
  */
 @WebServlet("/LogOutServlet")
 public class LogOutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2696676700455754923L;
+	
 	Logger logger = Logger.getLogger(LogOutServlet.class);
        
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

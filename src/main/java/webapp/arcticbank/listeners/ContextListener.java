@@ -33,12 +33,24 @@ public class ContextListener implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent arg0) {
 		ServletContext context = arg0.getServletContext();
-      
+		
+	    //initialize  session factory
+			try {
+				SessionManager.buildSessionFactory();
+				SessionFactory sessionFactory = SessionManager.getSessionFactory();
+				context.setAttribute("sessionFactory", sessionFactory);
+				if(sessionFactory != null) context.log("session factory configured succesfully");
+				if(sessionFactory == null) context.log("session factory not configured!!!");
+			} catch (Exception exc) {
+				context.log("erorr was ocurred while configurung sessionFactory");
+			}
+			
+			
         
       //initialize log4j
     	String log4jConfig = context.getInitParameter("log4j-config");
     	if(log4jConfig == null){
-    		System.err.println("No log4j-config init param, initializing log4j with BasicConfigurator");
+    		System.out.println("No log4j-config init param, initializing log4j with BasicConfigurator");
 			BasicConfigurator.configure();
     	}else {
 			String webAppPath = context.getRealPath("/");
@@ -54,18 +66,7 @@ public class ContextListener implements ServletContextListener {
 		}
     	System.out.println("log4j configured properly");
     	
-        //initialize session factory
-		try {
-			SessionManager.buildSessionFactory();
-			SessionFactory sessionFactory = SessionManager.getSessionFactory();
-			context.setAttribute("sessionFactory", sessionFactory);
-			if(sessionFactory != null) context.log("session factory configured succesfully");
-			if(sessionFactory == null) context.log("session factory not configured!!!");
-		} catch (Exception exc) {
-			context.log("erorr was ocurred while configurung sessionFactory");
-		}
-		
-		
+    
 		
     }
 		

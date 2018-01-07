@@ -21,6 +21,11 @@ import webapp.arcticbank.model.User;
 
 @WebServlet("/PersonalCabinetServlet")
 public class PersonalCabinetServlet extends HttpServlet{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2170545268934500499L;
 	UserDAO userDao = new UserDAO();
     
 	

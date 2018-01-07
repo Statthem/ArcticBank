@@ -9,9 +9,9 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="BootStrap/css/bootstrap.css">
+	href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="BootStrap/fonts/font-awesome/css/font-awesome.css">
+	href="fonts/font-awesome/css/font-awesome.css">
 <title>Credit card succesfull registration page</title>
 
 </head>
@@ -24,7 +24,7 @@ for(Cookie cookie : cookies){
 	if(cookie.getName().equals("card_id")) card_id = cookie.getValue();
 }
 }
-if(card_id == null) response.sendRedirect("WelcomePage.jsp");
+else response.sendRedirect("WelcomePage.jsp");
 %>
 <br>
 	<div class="container">
