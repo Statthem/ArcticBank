@@ -55,8 +55,8 @@ public class LoginServlet extends HttpServlet{
 				}else{
 					logger.info("problem with user authentification");
 					RequestDispatcher rd = getServletContext().getRequestDispatcher("/WelcomePage.jsp");
-					PrintWriter out= resp.getWriter();
-					out.println("<font color=red>Either email or password is wrong.</font>");
+					/*PrintWriter out= resp.getWriter();
+					out.println("<font color=red>Either email or password is wrong.</font>");*/
 					rd.include(req, resp);
 				}
 
