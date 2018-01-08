@@ -220,7 +220,7 @@
 				<div class="col-md-6">
 					<div class="about-text">
 						<h4>Why Choose Us</h4>
-						<p>Cose we are the best</p>
+						<p>We are the best</p>
 					</div>
 				</div>
 			</div>

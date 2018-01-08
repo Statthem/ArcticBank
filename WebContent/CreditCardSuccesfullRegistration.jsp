@@ -13,18 +13,17 @@
 <link rel="stylesheet" type="text/css"
 	href="fonts/font-awesome/css/font-awesome.css">
 <title>Credit card succesfull registration page</title>
-
+<style type="text/css">
+body {
+    text-align: center;
+     font-size: 24px;
+}
+</style>
 </head>
-<body>
+<body link="#1fc68c">
 			<%
 String card_id = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-for(Cookie cookie : cookies){
-	if(cookie.getName().equals("card_id")) card_id = cookie.getValue();
-}
-}
-else response.sendRedirect("WelcomePage.jsp");
+card_id  = String.valueOf(request.getSession().getAttribute("card_id"));
 %>
 <br>
 	<div class="container">

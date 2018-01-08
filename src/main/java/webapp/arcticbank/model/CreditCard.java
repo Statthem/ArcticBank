@@ -21,6 +21,9 @@ public class CreditCard implements Serializable{
 	public CreditCard(){}
 	
 	@Id
+	@Column(name="id", nullable=false, unique=true)
+	private long id;
+	
 	@Column(name="card_id", nullable=false, unique=true)
 	private long card_id;
 	
@@ -28,7 +31,7 @@ public class CreditCard implements Serializable{
 	private Timestamp creation_date;
 	
 	@Column(name="pin_code", nullable=false, length=4)
-	private long pin_code;
+	private String pin_code;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
@@ -53,11 +56,11 @@ public class CreditCard implements Serializable{
 		this.user = user;
 	}
 
-	public long getPin_code() {
+	public String getPin_code() {
 		return pin_code;
 	}
 
-	public void setPin_code(long pin_code) {
+	public void setPin_code(String pin_code) {
 		this.pin_code = pin_code;
 	}
 

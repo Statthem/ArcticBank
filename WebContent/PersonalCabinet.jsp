@@ -32,7 +32,7 @@ User user = (User) request.getSession().getAttribute("current_user");
 %>
 <div class="container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 			<h1>Personal information</h1>
  <p>	Name: <%= user.getFirst_name() %> </p>
  <p>    SurName: <%= user.getSecond_name() %> </p>
@@ -44,7 +44,7 @@ User user = (User) request.getSession().getAttribute("current_user");
 	<%if (user.getCredit_cards() != null){ %>
 	<div class="row">
 			<div class="col-md-4">
-			<h4>Credit cards:</h4>
+			<h1>Credit cards:</h1>
      <%
      Iterator<CreditCard> iterator = user.getCredit_cards().iterator();
      while(iterator.hasNext()){
@@ -63,8 +63,8 @@ User user = (User) request.getSession().getAttribute("current_user");
   
 	</div>
 	<%if (user.getDeposits() != null){ %>
-	<div class="col-md-6">
-			<h4>Deposits:</h4>
+	<div class="col-md-8">
+			<h1>Deposits:</h1>
 			<% 
 			Iterator<Deposit> iterator = user.getDeposits().iterator();
 			while(iterator.hasNext()){

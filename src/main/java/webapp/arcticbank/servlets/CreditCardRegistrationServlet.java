@@ -42,6 +42,7 @@ public class CreditCardRegistrationServlet extends HttpServlet {
 		context = req.getServletContext();
         
 		long card_id = 0;
+		long cardId = 0;
 		String pin_code = null;
 		int pin = 0;
 
@@ -55,55 +56,44 @@ public class CreditCardRegistrationServlet extends HttpServlet {
 		}
 
 		User user = (User) req.getSession().getAttribute("current_user");
-		CreditCard creditCard = new CreditCard();
-		creditCard.setCard_id(card_id);
-		System.out.println(card_id);
-		creditCard.setPin_code(pin);
 		try {
-			creditCardDAO.addCreditCard(user, creditCard);
+		cardId = creditCardDAO.addCreditCard(user,pin_code,card_id);
+		if(cardId > 0){
 			logger.info("credit card registration succesfull");
+			req.getSession().setAttribute("card_id", card_id);
+			req.getRequestDispatcher("/CreditCardSuccesfullRegistration.jsp").forward(req, resp);
+		}
 		} catch (Exception e) {
 			logger.info("exception was ocured while credit card registration:",e);
 			e.printStackTrace(System.out);
 		}
-		
-		Cookie cookie = new Cookie("card_id",String.valueOf(card_id));
-		resp.addCookie(cookie);
-		
-		req.getRequestDispatcher("/CreditCardSuccesfullRegistration.jsp").forward(req, resp);
+		if(card_id < 0)
+		req.getRequestDispatcher("/CreditCardUnSuccesfullRegistration.html").forward(req, resp);
 		
 
 	}
 
 	@Override
 	public void init() throws ServletException {
+		
 				super.init();
 	}
 
+	
+	
+	
 	private long generateCardId() {
 
 		Random random = new Random();
-		int number1 = random.nextInt(9) + 0;
-		int number2 = random.nextInt(9) + 0;
-		int number3 = random.nextInt(9) + 0;
-		int number4 = random.nextInt(9) + 0;
-		int number5 = random.nextInt(9) + 0;
-		int number6 = random.nextInt(9) + 0;
-		int number7 = random.nextInt(9) + 0;
-		int number8 = random.nextInt(9) + 0;
-		int number9 = random.nextInt(9) + 0;
-		int number10 = random.nextInt(9) + 0;
-		int number11 = random.nextInt(9) + 0;
-		int number12 = random.nextInt(9) + 0;
-		int number13 = random.nextInt(9) + 0;
-		int number14 = random.nextInt(9) + 0;
-
-		String id = String.valueOf(number1) + String.valueOf(number2) + String.valueOf(number3)
-				+ String.valueOf(number4) + String.valueOf(number5) + String.valueOf(number6) + String.valueOf(number7)
-				+ String.valueOf(number8) + String.valueOf(number9) + String.valueOf(number10)
-				+ String.valueOf(number11) + String.valueOf(number12) + String.valueOf(number13)
-				+ String.valueOf(number14);
-
+		
+		int[] numbers = new int[14];
+		String id ="";
+		for(int i = 0;i<numbers.length;i++){
+			if(i == 0) numbers[i] = random.nextInt(8) + 1;
+			numbers[i] = random.nextInt(9) + 0;
+			id = id + String.valueOf(numbers[i]);
+		}
+				
 		long cardId = Long.parseLong(id);
 		
 		return cardId;

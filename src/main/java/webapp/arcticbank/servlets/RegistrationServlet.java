@@ -35,6 +35,12 @@ public class RegistrationServlet extends HttpServlet {
 	SessionFactory sessionFactory;
 
 	@Override
+	public void init() throws ServletException {
+		sessionFactory = (SessionFactory) this.getServletContext().getAttribute("sessionFactory");
+		super.init();
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		context = req.getServletContext();
 
@@ -93,11 +99,8 @@ public class RegistrationServlet extends HttpServlet {
 		}
 
 	}
+	
 
-	@Override
-	public void init() throws ServletException {
-		sessionFactory = (SessionFactory) this.getServletContext().getAttribute("sessionFactory");
-		super.init();
-	}
+	
 
 }

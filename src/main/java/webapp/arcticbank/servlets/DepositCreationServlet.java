@@ -48,12 +48,11 @@ public class DepositCreationServlet extends HttpServlet {
 		User user = (User) req.getSession().getAttribute("current_user");
 		
 		Deposit deposit = new Deposit();
-		deposit.setBalance(balance);
 		deposit.setCreation_date(creation_date);
 		deposit.setExpiration_date(expiration_date);
 		
 		try{
-	    depositDAO.createDeposit(user, deposit);
+	    depositDAO.createDeposit(user, deposit,sourceCard_id,balance);
 		logger.info("new deposit created successfuly");
 		}catch(Exception exc){
 			logger.info("exception while creating new deposit",exc);

@@ -49,22 +49,25 @@ public class CashTransferServlet extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("/CashTransfer.jsp");
 		PrintWriter out= resp.getWriter();
 		try{
+			if(creditCardDAO.getCardById(destCard_id) == null){
+				out.println("<font color=red>destination card id is wrong</font>");
+		    rd.include(req, resp);
+			}
 			 sourceCard = creditCardDAO.getCardById(sourceCard_id);
 			 destCard = creditCardDAO.getCardById(destCard_id);
 		if(sourceCard != null && destCard != null){
-			if(sourceCard.getBalance().compareTo(summ) < 0)
-				out.println("<font color=red>destination card id is wrong</font>");
+			
+			if(sourceCard.getBalance().compareTo(summ) < 0){
+				out.println("<font color=red> you have not enough money at your balance </font>");
 			    rd.include(req, resp);
+			}
+			
 			 moneyDAO.moneyTransaction(sourceCard, destCard, summ);
 			 rd = req.getRequestDispatcher("SuccesfullMoneyTransfer.html");
 			 rd.forward(req, resp);
 			 
 		}
-		else{
-			out.println("<font color=red>you have not enough money at your balance</font>");
-			rd.include(req, resp);
-			
-		}
+		
 		
 		}catch(HibernateException exc){
 			logger.info("Hibernate exception while money transaction!!!", exc);
