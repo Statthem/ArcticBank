@@ -44,7 +44,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="WelcomePage.html"><i
+				<a class="navbar-brand" href="WelcomePage.jsp"><i
 					class="fa fa-sun-o"></i> Arctic<strong></strong></a>
 			</div>
 
@@ -220,7 +220,9 @@
 				<div class="col-md-6">
 					<div class="about-text">
 						<h4>Why Choose Us</h4>
-						<p>We are the best</p>
+						<p>We are the best;</p>
+						<p>Statthem - developer;</p>
+						<p>Arctic = cool;</p>
 					</div>
 				</div>
 			</div>
@@ -244,7 +246,7 @@
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="achievement-box">
-						<span class="count">602145</span>
+						<span class="count">602145.50</span>
 						<h4>Money transfered</h4>
 					</div>
 				</div>

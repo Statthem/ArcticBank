@@ -1,6 +1,9 @@
 package webapp.arcticbank.DAO;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
@@ -52,6 +55,19 @@ public class CreditCardDAO {
 
 		return card != null ? card : null;
 
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public Set<CreditCard> getUserCards(User user){
+		Set<CreditCard> creditCards  = null;
+		
+		Query query = session.createQuery("Select c from CreditCard c where c.user=:user");
+		query.setParameter("user", user);
+		creditCards =  new HashSet(query.list());
+		
+		
+		return creditCards != null ? creditCards : null;
 	}
 
 }

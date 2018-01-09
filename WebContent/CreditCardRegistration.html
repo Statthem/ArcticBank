@@ -12,18 +12,60 @@
 	href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
 	href="fonts/font-awesome/css/font-awesome.css">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300'
+	rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="js/modernizr.custom.js"></script>
+
 <title>Credit card registration page</title>
 <style type="text/css">
 
 body{
- background-color:#edfcff;
-  font-family: "Times New Roman", Times, serif;
   font-size: 24px;
 }
 </style>
 </head>
 <body>
-	<br>
+<nav id="menu" class="navbar navbar-default2 navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="WelcomePage.jsp"><i
+					class="fa fa-sun-o"></i> Arctic<strong></strong></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="WelcomePage.jsp" class="page-scroll">Home</a></li>
+					<li>
+						<form action="LogOutServlet" method="post">
+							<button type="submit" class="btn btn-default">Log out</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+<br>
+<br>
+<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2">
@@ -33,7 +75,7 @@ body{
 							type="number" class="form-control" name="pin_code" required="required">
 					</div>
 
-					<button type="submit" class="btn btn-default">Register</button>
+					<button type="submit" class="btn btn-primary">Register</button>
 
 				</form>
 			</div>
@@ -55,6 +97,24 @@ body{
 			</div>
 		</div>
 		</div>
-</body>
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/SmoothScroll.js"></script>
+	<script type="text/javascript" src="js/jquery.counterup.js"></script>
+	<script type="text/javascript" src="js/waypoints.js"></script>
+	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="js/jquery.isotope.js"></script>
+	<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
 
+
+	<!-- Javascripts
+    ================================================== -->
+	<script type="text/javascript" src="js/main.js"></script>
+		
+</body>
 </html>

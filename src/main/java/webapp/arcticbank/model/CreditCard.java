@@ -21,10 +21,10 @@ public class CreditCard implements Serializable{
 	public CreditCard(){}
 	
 	@Id
-	@Column(name="id", nullable=false, unique=true)
+	@Column(name="id", nullable=false)
 	private long id;
 	
-	@Column(name="card_id", nullable=false, unique=true)
+	@Column(name="card_id", nullable=false)
 	private long card_id;
 	
 	@Column(name="creation_date")
