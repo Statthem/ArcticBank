@@ -131,6 +131,7 @@ if(user.getDate_of_birthday() == null){ date = "empty";
 				Deposit deposit = iterator.next();
 				out.println("balance: " + deposit.getBalance() + " creation date: " + deposit.getCreation_date() + " expiration date: " + deposit.getExpiration_date());
 			%>
+			<br>
 			<%
 			
 			}

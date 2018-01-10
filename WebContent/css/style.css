@@ -84,6 +84,9 @@ hr {
 	background-color: black;
 	height: 80px;
 	border-color: rgba(231, 231, 231, 0);
+	font-size: 14px;
+	padding: 20px;
+	transition: all 0.8s;
 }
 #menu a.navbar-brand {
 	text-transform: uppercase;
@@ -99,7 +102,7 @@ hr {
 	text-transform: uppercase;
 	color: #eeeeee;
 	font-size: 12px;
-	letter-spacing: 1px;
+	
 }
 #menu.navbar-default .navbar-nav > li > a:hover {
 	color: #0dad8d;

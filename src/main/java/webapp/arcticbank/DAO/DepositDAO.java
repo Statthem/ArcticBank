@@ -32,9 +32,7 @@ public class DepositDAO {
 			deposit.setBalance(balance);
 			
 			creditCard = creditCardDAO.getCardById(card_id);
-			if(creditCard.getBalance().intValue()<=0 | creditCard.getBalance() == null){
-			 return false;
-			}
+			
 			BigDecimal newBalance = creditCard.getBalance().subtract(balance);
 			creditCard.setBalance(newBalance);
 			

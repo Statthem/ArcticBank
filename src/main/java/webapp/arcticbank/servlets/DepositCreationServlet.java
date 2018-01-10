@@ -1,6 +1,7 @@
 package webapp.arcticbank.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
+import webapp.arcticbank.DAO.CreditCardDAO;
 import webapp.arcticbank.DAO.DepositDAO;
 import webapp.arcticbank.DAO.UserDAO;
+import webapp.arcticbank.model.CreditCard;
 import webapp.arcticbank.model.Deposit;
 import webapp.arcticbank.model.User;
 
@@ -29,9 +32,12 @@ public class DepositCreationServlet extends HttpServlet {
 	Logger logger = Logger.getLogger(DepositCreationServlet.class);
 	
 	DepositDAO depositDAO = new DepositDAO();
+	CreditCardDAO creditcCardDAO = new CreditCardDAO();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		PrintWriter out = resp.getWriter();
+		
 		String Sourceid = req.getParameter("Scard_id");
 		Long sourceCard_id = Long.valueOf(Sourceid);
 
@@ -50,6 +56,13 @@ public class DepositCreationServlet extends HttpServlet {
 		Deposit deposit = new Deposit();
 		deposit.setCreation_date(creation_date);
 		deposit.setExpiration_date(expiration_date);
+		
+		CreditCard sourceCard = creditcCardDAO.getCardById(sourceCard_id);
+		
+		if(sourceCard.getBalance().compareTo(balance) < 0){
+			out.println("<font color=red> you have not enough money at your balance </font>");
+		    req.getRequestDispatcher("/DepositCreation.jsp").include(req, resp);
+		}
 		
 		try{
 	    depositDAO.createDeposit(user, deposit,sourceCard_id,balance);

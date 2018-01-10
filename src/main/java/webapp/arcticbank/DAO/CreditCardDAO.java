@@ -58,10 +58,34 @@ public class CreditCardDAO {
 	}
 	
 	
+	
+	public List<CreditCard> getCardsByUser(User user) {
+		List<CreditCard>  cards = null;
+
+		Query query = session.createQuery("SELECT c from CreditCard c where c.user_id=:user_id");
+		query.setParameter("user_id", user.getId());
+        cards =  query.list();
+
+		return cards != null ? cards : null;
+
+	}
+	
+	public List<CreditCard> getAllCards() {
+		List<CreditCard>  cards = null;
+
+		Query query = session.createQuery("SELECT c from CreditCard c");
+        cards =  query.list();
+
+		return cards != null ? cards : null;
+
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public Set<CreditCard> getUserCards(User user){
 		Set<CreditCard> creditCards  = null;
-		
+		session.save(user);
 		Query query = session.createQuery("Select c from CreditCard c where c.user=:user");
 		query.setParameter("user", user);
 		creditCards =  new HashSet(query.list());

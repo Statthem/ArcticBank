@@ -61,6 +61,18 @@ public class UserDAO {
 		return (user != null) ? user : null;
 	}
 
+	public List<User> getAllUsers() {
+		List<User>users = null;
+		try {
+			Query query = session
+					.createQuery("SELECT u from User u");
+			users =  query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return (users != null) ? users : null;
+	}
+
 	
 
 	

@@ -56,15 +56,18 @@
 					<li><a href="#services-section" class="page-scroll">Services</a></li>
 					<li><a href="#about-section" class="page-scroll">About</a></li>
 					<li><a href="#contact-section" class="page-scroll">Contact</a></li>
+						<%
+						if (request.getSession().getAttribute("admin") != null) {
+					%>
+					<li> <a href = "AdminPanel.jsp" class="page-scroll">Admin panel</a></li>
 					<%
-						if (request.getSession().getAttribute("current_user") == null) {
+						} if (request.getSession().getAttribute("current_user") == null) {
 					%>
 					<li><a href="#login-section" class="page-scroll">Login</a></li>
 					<%
 						} else {
 					%>
-					<li> <a href = "PersonalCabinet.jsp" class="page-scroll">My personal cabinet</a>
-					</li>
+					<li> <a href = "PersonalCabinet.jsp" class="page-scroll">My personal cabinet</a></li>
 					<li>
 						<form action="LogOutServlet" method="post">
 							<button type="submit" class="btn btn-default">Log out</button>
