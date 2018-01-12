@@ -200,7 +200,7 @@
 				<div class="col-md-3 col-sm-6 service">
 					<i class="fa fa-line-chart"></i>
 					<h4>Currencies</h4>
-					<p><a href="https://www.dailyfx.com/forex-rates">Watch live currencies</a>
+					<p><a href="CurrenciesPage.jsp">Watch live currencies</a>
 						</p>
 				</div>
 			</div>
