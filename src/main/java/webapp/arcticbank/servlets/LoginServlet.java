@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		
-		SessionFactory sessionFactory = (SessionFactory) req.getServletContext().getAttribute("sessionFactory");
+		
 		if ((user = userDao.checkForLogin(email, password)) != null ) {
 
 			if(alreadyIn(req, user)){
