@@ -1,6 +1,3 @@
-<%@ page import="webapp.arcticbank.currencies.*"%>
-<%@ page import="webapp.arcticbank.model.CreditCard"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +12,7 @@
 	<style type="text/css">
 
 body{
-  font-size: 28px;
+  font-size: 23px;
 }
 </style>
 <!-- Bootstrap -->
@@ -73,50 +70,12 @@ body{
 	</nav>
 </head>
 <body>
-<%Rates rates = HttpGet.getCurrencies(); %>
 <br>
 <br>
 <br>
 <br>
 <br>
-
-<h2> Currencies</h2>
-<br>
-  <p>Here you can see live currencies</p>  
-<table class="table">    
-    <thead>
-      <tr>
-        <th>Currency</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>USD/EUR</td>
-        <td><%= rates.getEUR() %></td>
-      </tr>
-      <tr>
-        <td>USD/RUB</td>
-        <td><%= rates.getRUB() %></td>
-      </tr>
-      <tr>
-        <td>USD/UAH</td>
-        <td><%= rates.getUAH() %></td>
-      </tr>
-       <tr>
-        <td>USD/CNY</td>
-        <td><%= rates.getCNY() %></td>
-      </tr>
-       <tr>
-        <td>USD/JPY</td>
-        <td><%= rates.getJPY() %></td>
-      </tr>
-       <tr>
-        <td>USD/GBP</td>
-        <td><%= rates.getGBP() %></td>
-      </tr>
-    </tbody>
-  </table>
+<center> <h3> You're already in!!! </h3></center>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -126,11 +85,6 @@ body{
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/SmoothScroll.js"></script>
-	<script type="text/javascript" src="js/jquery.counterup.js"></script>
-	<script type="text/javascript" src="js/waypoints.js"></script>
-	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-	<script type="text/javascript" src="js/jquery.isotope.js"></script>
-	<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
 
 
 	<!-- Javascripts

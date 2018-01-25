@@ -28,7 +28,6 @@ public class CreditCardDAO {
 
 		try {
 			creditCard = new CreditCard();
-			System.out.println("card id = " + card_id);
 			creditCard.setCard_id(card_id);
 			creditCard.setPin_code(pin_code);
 			creditCard.setUser(user);

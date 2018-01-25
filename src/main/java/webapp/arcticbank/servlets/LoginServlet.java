@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 
+import com.mashape.unirest.request.HttpRequest;
+
 import webapp.arcticbank.DAO.UserDAO;
 import webapp.arcticbank.model.User;
 
@@ -29,6 +31,10 @@ public class LoginServlet extends HttpServlet {
 	UserDAO userDao = new UserDAO();
 
 	static Logger logger = Logger.getLogger(LoginServlet.class);
+	
+	
+	
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,6 +45,7 @@ public class LoginServlet extends HttpServlet {
 		String email = req.getParameter("user_email");
 		String password = req.getParameter("password");
 		
+		//admin only params
 		if(email.equals("admin@ukr.net") && password.equals("sasa1999")){
 			session.setAttribute("admin", "admin");
             user =  new User();
@@ -50,10 +57,15 @@ public class LoginServlet extends HttpServlet {
 
 		
 		SessionFactory sessionFactory = (SessionFactory) req.getServletContext().getAttribute("sessionFactory");
-		if ((user = userDao.checkForLogin(email, password)) != null) {
+		if ((user = userDao.checkForLogin(email, password)) != null ) {
 
+			if(alreadyIn(req, user)){
+				req.getRequestDispatcher("/AlreadyIn.html").forward(req, resp);
+				return;
+			}
 			logger.info("user " + user.getEmail() + " authentification succesfull");
 			session.setAttribute("current_user", user);
+			req.getServletContext().setAttribute(user.getEmail(), user);
 			
 			// setting session to expiry in 30 mins
 			session.setMaxInactiveInterval(60 * 30);
@@ -61,15 +73,27 @@ public class LoginServlet extends HttpServlet {
 
 		} else {
 			logger.info("problem with user authentification");
+			req.setAttribute("authentification", "false");
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WelcomePage.jsp");
-			/*
-			 * PrintWriter out= resp.getWriter(); out.
-			 * println("<font color=red>Either email or password is wrong.</font>"
-			 * );
-			 */
+
 			rd.include(req, resp);
 		}
 
+	}
+	
+	private boolean alreadyIn(HttpServletRequest request,User user){
+		boolean flag = false;
+		
+		if(request.getServletContext().getAttribute(user.getEmail()) != null){
+			flag = true;
+		}
+		
+		return flag;
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect("/ArcticBank/WelcomePage.jsp");
 	}
 
 }

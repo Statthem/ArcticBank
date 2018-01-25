@@ -35,7 +35,6 @@
 }
 	</style>	
 </head>
-
 <body>
 <%
 User user = (User) request.getSession().getAttribute("current_user");
@@ -97,6 +96,8 @@ if(user.getDate_of_birthday() == null){ date = "empty";
 	<img src="img/userPhoto.jpg" class="img-responsive">
 	</div>
 	</div>
+	
+	
 	
 	<br>
 	<br>

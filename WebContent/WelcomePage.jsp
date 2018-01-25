@@ -112,6 +112,9 @@
 
 					<form action="LoginServlet" method="post">
 						<div class="form-group">
+						<% if (request.getAttribute("authentification") != null){ %>
+						<p><jsp:include page="Wrong.html"/></p>
+						<%  } %>
 							<label for="email">Email address:</label> <input type="email"
 								class="form-control" id="email" name="user_email">
 						</div>
