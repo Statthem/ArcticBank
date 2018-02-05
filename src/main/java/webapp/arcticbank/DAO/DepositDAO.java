@@ -50,5 +50,36 @@ public class DepositDAO {
 		return false;
 
 	}
+	
+	public boolean createDeposit2(User user, Deposit deposit,Long card_id,BigDecimal balance){
+		Transaction transaction = null;
+		
+        CreditCard creditCard = null;
+
+		try {
+			transaction = session.beginTransaction();
+			deposit.setUser(user);
+			deposit.setBalance(balance);
+			
+			creditCard = creditCardDAO.getCardById(card_id);
+			
+			BigDecimal newBalance = creditCard.getBalance().subtract(balance);
+			creditCard.setBalance(newBalance);
+			
+			List<Deposit> deposits = user.getDeposits();
+            deposits.add(deposit);
+            user.setDeposits(deposits);
+            
+			session.update(user);
+			transaction.commit();
+			return true;
+		} catch (HibernateException exc) {
+			exc.printStackTrace();
+			transaction.rollback();
+		}
+		return false;
+
+	}
+
 
 }
